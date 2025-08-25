@@ -41,12 +41,12 @@ User home directory:
   agents/
     claudette-*.md <- format for claudette agents
   claudette/
-    guide.md <- general guide for all claudette commands
+    commands-subagents-guide.md <- this file
     templates/
-      brief-template.md
-      prd-template.md
-      spec-template.md
-      impl-template.md
+      STATUS.md <- project status template
+      ACTIVITY.md <- activity log template
+      feature.md <- combined PRD+Spec template
+      tasks.md <- single task file template
 ```
 
 Project root directory:
@@ -54,27 +54,25 @@ Project root directory:
 ```
 project-root/
   planning/
-    brief.md
+    STATUS.md <- active feature pointer and current task
+    ACTIVITY.md <- simple activity log
     features/
-      in-progress/
-        0001-user-management/
-          prd.md <- high-level requirements and acceptance criteria
-          spec.md <- Feature Specification Detail (technical design and requirements)
-          impl.md <- Feature Implementation Overview (high-level roadmap)
-          tasks/
-            0001-phase-x-title-of-phase.md
-      done/
-      backlog/
+      0001-feature-name/
+        feature.md <- combined PRD+Spec (high-level + technical design)
+        tasks.md <- all tasks in phases (foundation, logic, api, testing, polish)
+      0002-another-feature/
+        feature.md
+        tasks.md
 ```
 
 ## Guidelines
 
 - When presenting options for next steps in the process, always display as a list with numbers for each access
 - At any time, the user may ask what is next. Guide him through available commands
-- Product Requirements Document (prd.md): Focus on high-level requirements and acceptance criteria only
-- Feature Specification Details (spec.md): Focus on detailed technical design and architecture
-- Feature Implementation Details (impl.md): Focus on high-level roadmap, and splitting up in tasks
-- Start Coding (core.md): Start coding the feature
+- feature.md: Combined PRD+Spec with problem statement, solution, technical design, and acceptance criteria
+- tasks.md: All implementation tasks organized in phases (foundation, logic, api, testing, polish)
+- STATUS.md: Always read this first to understand active feature and current task
+- ACTIVITY.md: Log activities in simple bullet format: "- [action]: [outcome]"
 
 ## Definition of Done
 
@@ -89,8 +87,10 @@ You can read the commands directory (`ls -l .claude/commands/claudette`) directo
 
 ## Available Subagents
 
-- **claudette-senior-engineer**: For implementing detailed code based on technical specifications and implementation documents
-- **claudette-lead-architect**: For technical architecture decisions, clarifications, and resolving technical uncertainties
+- **claudette-pm**: For managing planning documents and project status using STATUS.md workflow
+- **claudette-senior-engineer**: For implementing detailed code based on active feature using STATUS.md workflow  
+- **claudette-lead-architect**: For technical architecture decisions and clarifications
+- **claudette-reviewer**: For quick code review and quality checks (haiku model)
 
 ## Internal tools
 

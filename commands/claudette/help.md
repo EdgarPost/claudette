@@ -8,5 +8,31 @@ First read @~/.claude/claudette/commands-subagents-guide.md and follow the rules
 
 # Goal
 
-Your goal is to help the human guide through Claudette's workflow. Hold the human's hand.
-Based on the current project status, recommend the user which path to choose.
+Your goal is to help the human navigate the optimized Claudette workflow using STATUS.md.
+Based on the current project status, recommend which commands to use next.
+
+# Available Commands
+
+## Core Workflow
+- `/claudette-feature [name]` - Create new feature with complete PRD+Spec+Implementation plan
+- `/claudette-implement` - Start implementing the active feature
+- `/claudette-status` - Show current project status
+- `/claudette-switch [feature-id]` - Switch to different feature
+
+## Setup
+- `/claudette-init` - Initialize project structure
+- `/claudette-help` - Show this help
+
+# Process
+
+1. **Read STATUS.md** to understand current state
+2. **Check if project initialized** - if not, suggest `/claudette-init`
+3. **Recommend next logical step**:
+   - No active feature → `/claudette-feature`
+   - Feature in planning → `/claudette-implement`
+   - Feature in progress → `/claudette-status` to see current task
+   - Multiple features → `/claudette-switch`
+
+# Response Format
+
+Show current status and recommend 1-2 next commands with brief explanations.
