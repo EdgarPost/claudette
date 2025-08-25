@@ -47,7 +47,7 @@ Make sure to read the ~/.claude/claudette/commands-subagents-guide.md for file s
    - Explore: "What if we need to scale 10x in the future?"
    - Confirm: "Are you satisfied with this solution direction?"
 
-### Phase 3: Technical Design Proposal & Approval
+### Phase 3: Technical Design & Technology Stack Validation
 
 1. **Present detailed architecture:**
    - System components with specific responsibilities
@@ -56,11 +56,18 @@ Make sure to read the ~/.claude/claudette/commands-subagents-guide.md for file s
    - Integration points and dependencies
    - Security and performance considerations
 
-2. **Get explicit technical approval:**
-   - "Do you approve this technical design? (yes/modify)"
-   - If modify: iterate on specific components
+2. **Validate and lock technology stack:**
+   - Use Context7 MCP to get latest versions: "What is the latest stable version of [each technology]?"
+   - Present complete technology stack table with exact versions
+   - Verify compatibility: "Are [Technology X] v[X.Y.Z] and [Technology Y] v[A.B.C] compatible in 2025?"
+   - Document Context7 validation date and reasoning for each choice
+   - Get user approval: "Do you approve these specific technology versions?"
+
+3. **Get explicit technical approval:**
+   - "Do you approve this complete technical design and technology stack? (yes/modify)"
+   - If modify: iterate on specific components or versions
    - If yes: proceed to implementation planning
-   - Use Context7 MCP to validate technology choices
+   - Ensure all versions are locked and documented
 
 ### Phase 4: Implementation Planning & Task Breakdown
 
@@ -108,33 +115,48 @@ Make sure to read the ~/.claude/claudette/commands-subagents-guide.md for file s
 - Query: "Compare [Technology A] vs [Technology B] for [specific use case]"
 - Document what Context7 recommends and why
 
-### Phase 3: Technical Design
+### Phase 3: Technical Design & Technology Stack Validation
 
 - Query: "What is the latest stable version of [Framework/Library]?"
-- Query: "Are [Technology X] and [Technology Y] compatible in 2025?"
+- Query: "Are [Technology X] v[X.Y.Z] and [Technology Y] v[A.B.C] compatible in 2025?"
 - Query: "What are current security best practices for [specific architecture]?"
 - Query: "What are performance considerations for [specific pattern]?"
+- **CRITICAL**: Create complete Technology Stack table with exact versions
+- **CRITICAL**: Validate compatibility matrix between all chosen versions
+- Document Context7 validation date for each technology choice
 
 ### Documentation Creation
 
 - Include Context7 findings in both feature.md and tasks.md
-- Format: "Context7 Consulted: [DATE] - Validated [specific technologies/patterns]"
+- **MANDATORY**: Include complete Technology Stack table in feature.md with columns:
+  - Category | Technology | Version | Context7 Validated | Reason for Choice
+- Format: "Context7 Consulted: [DATE] - Validated [specific technologies/patterns/versions]"
 - Always explain WHY Context7's recommendations were chosen or rejected
+- Ensure tasks.md references exact versions from the Technology Stack table
 
 **Example Context7 Usage:**
 
 ```
-Based on your requirements, let me check the latest recommendations...
+Based on your requirements, let me validate the complete technology stack...
 
 *Uses Context7 MCP*
 
-Context7 confirms that for authentication in 2025:
-- JWT with RS256 is still recommended (not HS256)
-- bcrypt remains the standard for password hashing
-- Rate limiting should be implemented at both application and infrastructure level
-- Latest Node.js LTS is v20.11.0, Express.js v4.18.2 is stable
+Context7 confirms for authentication in 2025:
+- Latest Node.js LTS: v20.11.0 (performance improvements, security patches)
+- Express.js: v4.18.2 (stable, extensive middleware ecosystem)  
+- PostgreSQL: v16.1 (JSON support, performance improvements)
+- jsonwebtoken: v9.0.2 (RS256 support, security updates)
+- bcrypt: v5.1.1 (timing attack resistant, industry standard)
 
-Do you want to proceed with this technology stack?
+Technology Stack Table:
+| Category | Technology | Version | Context7 Validated | Reason for Choice |
+|----------|------------|---------|-------------------|-------------------|
+| Runtime | Node.js | v20.11.0 | ✅ 2025-01-25 | Latest LTS, performance improvements |
+| Framework | Express.js | v4.18.2 | ✅ 2025-01-25 | Stable, extensive middleware ecosystem |
+
+Compatibility verified: All versions compatible with each other.
+
+Do you approve this specific technology stack with these exact versions?
 ```
 
 ## Response Examples
@@ -167,7 +189,7 @@ Context7 confirms JWT is still the recommended approach for 2025. Do you approve
 
 ### Final Creation
 
-"Perfect! Created comprehensive feature 0003-auth with your approved specifications. Ready for `/claudette-implement` to start development."
+"Perfect! Created comprehensive feature 0003-auth with your approved specifications and locked technology stack (Node.js v20.11.0, Express.js v4.18.2, etc.). Ready for `/claudette-implement` to start development with exact versions."
 
 ## Next Steps After Creation
 

@@ -8,6 +8,27 @@
 
 ---
 
+## Required Technology Versions
+
+**CRITICAL**: Use ONLY these exact versions as specified in feature.md Technology Stack table. These were validated during Context7 consultation and user approval.
+
+### Installation Requirements
+```bash
+# Copy exact commands from feature.md Technology Stack section
+[package-manager] install [library]@[version]
+[package-manager] install [framework]@[version]
+# ... (all packages with exact versions)
+```
+
+**Version Verification**: Before starting implementation, verify current versions match feature.md specifications:
+```bash
+[package-manager] list --depth=0 | grep [package-name]
+```
+
+**If versions differ from feature.md**: STOP implementation and update packages to match approved versions.
+
+---
+
 ## Overview & Success Criteria
 
 ### Definition of Done
@@ -73,16 +94,22 @@
   - **Estimated Time**: [X hours]
 
 ### Environment & Configuration Setup
+- [ ] **Install exact technology stack versions**
+  - Execute installation commands from feature.md Technology Stack table
+  - Verify installed versions match specifications exactly
+  - Document any version conflicts and resolution steps
+  - **Estimated Time**: [X hours]
+
 - [ ] **Set up development environment**
   - Create `.env.example` with all required variables
-  - Update `README.md` with setup instructions
-  - Configure database connection pooling
+  - Update `README.md` with setup instructions and version requirements
+  - Configure database connection pooling using approved [Database] v[X.Y.Z]
   - **Estimated Time**: [X hours]
 
 - [ ] **Add environment-specific configs**
-  - Development, staging, production configs
-  - Database connection strings and pool sizes
-  - JWT secret management (use env vars)
+  - Development, staging, production configs using [Framework] v[X.Y.Z] patterns
+  - Database connection strings for [Database] v[X.Y.Z]
+  - Configuration management using approved libraries only
   - **Estimated Time**: [X hours]
 
 ---
