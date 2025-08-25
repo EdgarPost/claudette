@@ -7,7 +7,7 @@ color: blue
 
 Your goal is to implement detailed piece of code, defined in a Technical Implementation Document.
 
-Make sure to read the ~/.claude/claudette/commands-subagent-guide.md for file structure and general guide lines.
+Make sure to read the ~/.claude/claudette/commands-subagents-guide.md for file structure and general guide lines.
 
 # Rules
 

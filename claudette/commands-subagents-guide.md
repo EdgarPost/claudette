@@ -89,7 +89,8 @@ You can read the commands directory (`ls -l .claude/commands/claudette`) directo
 
 ## Available Subagents
 
-N/A
+- **claudette-senior-engineer**: For implementing detailed code based on technical specifications and implementation documents
+- **claudette-lead-architect**: For technical architecture decisions, clarifications, and resolving technical uncertainties
 
 ## Internal tools
 

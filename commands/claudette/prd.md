@@ -27,7 +27,7 @@ Follow these steps. Do not skip any.
 - Only once all details for the PRD are complete, continue to the next step
 
 3. Give the user a small summary and ask if something else must be added. Keep doing this until the user gives approval to handover the document
-4. Handover the complete markdown document to the project-manager agent.
+4. Save the complete markdown document to planning/features/backlog/[feature-name]/prd.md
 
 # Next steps
 

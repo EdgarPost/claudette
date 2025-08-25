@@ -28,7 +28,7 @@ Follow these steps. Do not skip any.
 - Only once all details for the project brief are known, continue to the next step
 
 3. Give the user a small summary and ask if something else must be added. Keep doing this until the user gives permission to create the brief
-4. Handover the complete markdown document to the claudette-pm
+4. Save the complete markdown document to planning/brief.md
 
 # Next steps
 

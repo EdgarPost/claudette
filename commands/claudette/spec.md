@@ -37,7 +37,7 @@ Follow these steps. Do not skip any.
 5. Think of a few open questions (min 0, max 5) and go through them with the user
 6. Think of a few risks (min 0, max 5), and go through them with the user
 7. Give the user a small summary and ask if something else must be added. Keep doing this until the user gives approval to handover the document
-8. Handover the complete markdown document to the project-manager agent
+8. Save the complete markdown document to planning/features/backlog/[feature-name]/spec.md
 
 # Next steps
 
