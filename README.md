@@ -65,14 +65,16 @@ project-root/
 - Detailed `tasks.md` (25+ pages) with 80+ specific implementation tasks
 
 #### `/claudette-implement`
-**Purpose**: Start implementing the active feature
+**Purpose**: Systematically implement all tasks for the active feature
 
 **Process**:
-1. Reads STATUS.md to get current feature and task
+1. Reads STATUS.md to get active feature and all tasks
 2. Creates feature branch
-3. Delegates current task to claudette-senior-engineer
-4. Updates progress in STATUS.md and ACTIVITY.md
-5. Coordinates code review and testing
+3. Executes tasks sequentially in dependency order (Wave 1: Foundation → Wave 2: Services → Wave 3: API → Wave 4: Testing → Wave 5: Deployment)
+4. Delegates one task at a time to claudette-senior-engineer
+5. Updates progress after each task completion
+6. Runs code review after each wave
+7. Provides comprehensive progress tracking
 
 #### `/claudette-status`
 **Purpose**: Show current project state
@@ -210,7 +212,7 @@ NEXT: /claudette-implement - Continue with login endpoint
 - **10x faster feature switching** via STATUS.md lookup
 - **5x fewer file reads** per operation (single status file vs directory scanning)  
 - **Context preservation** across sessions via STATUS.md + ACTIVITY.md
-- **Parallel task execution** where appropriate
+- **Sequential task execution** for reliability and simplicity
 
 ### Quality Improvements
 

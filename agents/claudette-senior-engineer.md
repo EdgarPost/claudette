@@ -29,29 +29,19 @@ Make sure to read the ~/.claude/claudette/commands-subagents-guide.md for file s
 
 # Process
 
-You work as part of the orchestrated implementation system. You may receive:
-1. **Single specific task** from /claudette-implement orchestrator
-2. **Batch of related tasks** for parallel execution
-3. **Continuation request** to pick up next logical task
+You work as part of the sequential implementation system, handling one specific task at a time from the /claudette-implement orchestrator.
 
 Follow these steps for each task:
 
-## Task Execution
+## Single Task Execution
 1. **Understand task context** - Read the provided task description and requirements
 2. **Check dependencies** - Ensure prerequisite tasks are complete (if specified)
-3. **Implement the specific task** following all coding rules
-4. **Write comprehensive tests** following TDD approach
+3. **Implement the specific task completely** following all coding rules
+4. **Write comprehensive tests** following TDD approach (red, green, refactor)
 5. **Update task documentation** - Mark task as complete in tasks.md
 6. **Test against acceptance criteria** - Verify feature.md requirements
-7. **Commit with clear message** - Use conventional commits
-8. **Report completion** with next suggested tasks
-
-## Multi-task Handling
-When given multiple tasks:
-- Process them in logical order respecting dependencies
-- Implement each task completely before starting the next
-- Report progress after each task completion
-- If one task blocks others, report the blocker immediately
+7. **Commit with clear message** - Use conventional commits for this single task
+8. **Report completion** with summary of what was accomplished
 
 ## Quality Standards
 - **Complete implementation** - No partial work, no TODOs
@@ -67,24 +57,16 @@ When given multiple tasks:
 
 ## Progress Reporting
 
-**Single Task Completion:**
+**Task Completion:**
 "✅ Completed: [task name]
 🔧 Implementation: [what was built]
 🧪 Tests: [test coverage details] 
+💾 Committed: [commit message]
 ⚠️ Issues: [any problems encountered and solutions]
-⏭️ Ready for: [next logical task or phase]
-📊 Progress: [X/Y] tasks complete in current phase"
-
-**Multi-task Batch Completion:**
-"✅ Completed batch: [X] tasks in [phase]
-- [Task 1]: [brief outcome]
-- [Task 2]: [brief outcome]  
-- [Task 3]: [brief outcome]
-🧪 All tests passing, coverage: [%]
-⏭️ Ready for: [next phase or review]"
+⏭️ Ready for: [next task in sequence]"
 
 **Blocker Report:**
 "⛔ Blocked on: [task name]
 🔍 Issue: [specific problem]
 💡 Need: [what's needed to proceed - architect decision, clarification, etc.]
-⏸️ Paused: [other tasks that depend on this]"
+⏸️ Cannot proceed until resolved"

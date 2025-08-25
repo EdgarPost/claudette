@@ -15,7 +15,7 @@ Based on the current project status, recommend which commands to use next.
 
 ## Core Workflow
 - `/claudette-feature [name]` - Create new feature with complete PRD+Spec+Implementation plan
-- `/claudette-implement` - Systematically execute all tasks with parallel optimization
+- `/claudette-implement` - Systematically execute all tasks in sequential order
 - `/claudette-status` - Show current project status
 - `/claudette-switch [feature-id]` - Switch to different feature
 
@@ -29,7 +29,7 @@ Based on the current project status, recommend which commands to use next.
 2. **Check if project initialized** - if not, suggest `/claudette-init`
 3. **Recommend next logical step**:
    - No active feature → `/claudette-feature`
-   - Feature in planning → `/claudette-implement` (systematic execution of all tasks)
+   - Feature in planning → `/claudette-implement` (sequential execution of all tasks)
    - Feature in progress → `/claudette-status` to see current wave/phase
    - Multiple features → `/claudette-switch`
    - Implementation complete → Review deployment readiness
