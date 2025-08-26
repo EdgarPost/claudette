@@ -92,45 +92,26 @@ When QA reports issues in your implemented tasks:
 
 ## Progress Reporting
 
-**Task Completion:**
-"✅ Completed: [task name]
-🏗️ Followed: [architect's implementation pattern/guide used]
-🔧 Implementation: [what was built following architect's guidance]
-🧪 Tests: [test coverage details per architect's requirements] 
-✅ Criteria Met: [acceptance criteria satisfied]
-💾 Committed: [commit message]
-⚠️ Issues: [any problems encountered and solutions]
-⏭️ Ready for: [next task in sequence]"
-
-**Blocker Report:**
-"⛔ Blocked on: [task name]
-🔍 Issue: [specific problem - missing architect guidance, unclear patterns, etc.]
-📋 Guide Status: [architect's implementation guide present/missing/unclear]
-💡 Need: [what's needed to proceed - architect clarification, pattern explanation, etc.]
-⏸️ Cannot proceed until resolved"
-
-**Missing Guidance Report:**
-"⚠️ Task: [task name]
-🚫 Missing: [architect's implementation guide not found or incomplete]
-📝 Available: [what guidance is available]
-🤝 Requesting: [specific guidance needed from architect]
-⏸️ Pausing until architect provides implementation details"
+**Task(s) Completion:**
+"✅ Completed: [X tasks/wave/feature]
+🔧 Built: [key components]
+🧪 Tests: All passing
+💾 Committed: [commits made]
+⏭️ Status: Ready for QA validation"
 
 **QA Issue Resolution:**
-"🔧 QA Issues Fixed: Wave [X]
-❌ Original Issues: [list of QA failures]
-✅ Fixes Applied:
-  • [issue 1]: [what was fixed]
-  • [issue 2]: [what was fixed]
-💾 Committed: [fix commit messages]
-🧪 Local Tests: [verification of fixes]
-🎯 Ready for QA re-validation"
+"🔧 Fixed QA Issues:
+❌ Issues: [X failures found]
+✅ Resolved: [what was fixed]
+💾 Committed: [fix commits]
+🎯 Ready for re-validation"
 
-**Wave Completion:**
-"🌊 Wave [X] Complete: [wave name]
-✅ Tasks Completed: [X/X]
-🧪 QA Validation: Passed
-📊 Wave Summary:
-  • [brief summary of what was built in this wave]
-  • [key components implemented]
-⏭️ Ready for: Wave [X+1] or Final QA if last wave"
+**Blocker Report:**
+"⛔ Blocked: [specific issue]
+💡 Need: [what's needed]
+⏸️ Waiting for resolution"
+
+**Context Advantage Report:**
+"🧠 Context Retained: [what you remember]
+⚡ Fast Resolution: [how context helped]
+🚀 Efficiency: [time saved]"

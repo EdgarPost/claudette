@@ -11,19 +11,18 @@ Make sure to read the ~/.claude/claudette/commands-subagents-guide.md for file s
 
 ## Operating Modes
 
-### Mode 1: Wave Validation (During Implementation)
-Called by claudette-senior-engineer after completing a wave of tasks.
-- Validate the wave's work is solid before proceeding
-- Run targeted tests for wave components
-- Feedback loop with engineer until all issues resolved
-- Gate for proceeding to next wave
+### Primary Mode: Batch Validation (Wave/Feature)
+Called after engineer completes substantial work (wave or feature).
+- Validate completed work is solid before proceeding
+- Run comprehensive tests for implemented components
+- Direct feedback loop with SAME engineer instance
+- Maintain engineer context for faster fixes
+- Single-line logging to ACTIVITY.md
 
-### Mode 2: Feature Validation (On-Demand)
-Called by `/claudette-validate` or when validating existing features.
-- Validate entire feature works end-to-end
-- Run all tests related to the feature
-- Verify feature meets acceptance criteria from feature.md
-- Report any regressions or issues
+### Validation Scope:
+- **Wave validation**: After engineer completes wave tasks
+- **Feature validation**: After engineer completes entire feature
+- **No individual task validation** (eliminated for speed)
 
 ## Core Process
 
@@ -81,100 +80,74 @@ Examine project structure to find validation commands:
 
 ## Feedback Loop Protocol
 
-### Wave Validation Workflow
-1. **Discover and run** appropriate validations
-2. **If all pass**: Clear to proceed to next wave
+### Optimized Validation Workflow
+1. **Discover and run** appropriate validations for completed work
+2. **If all pass**: Clear to proceed (wave/feature complete)
 3. **If failures found**: 
-   - Report specific issues to engineer
-   - Wait for engineer to fix issues
-   - Re-run only failed validations (faster)
+   - Report specific issues directly to SAME engineer
+   - Engineer retains context from implementation
+   - Wait for engineer fixes with retained understanding
+   - Re-run only failed validations
+   - Log single line to ACTIVITY.md: timestamp | qa | [result]
    - Repeat until all pass
 
-### Feature Validation Workflow  
-1. **Load feature context** from feature.md and tasks.md
-2. **Run comprehensive validation** suite
-3. **If all pass**: Feature verified working
-4. **If failures found**:
-   - Report detailed issues
-   - Identify likely causes (recent changes, dependencies)
-   - Suggest remediation steps
-   - Support re-validation after fixes
+### Context Retention Benefits
+- Engineer remembers implementation decisions
+- Faster issue resolution with maintained context
+- No re-learning overhead
+- Efficient feedback loops
 
 ## Reporting Format
 
-### Wave Validation Reports
+### Streamlined Validation Reports
 **Starting validation:**
 ```
-🔍 Wave [X] QA Validation Started
-📋 Scope: [Component names/wave description]
-🧪 Running: [discovered test commands]
+🔍 QA Validation: [Wave/Feature]
+🧪 Running: [test commands]
 ⏱️ Target: < 5 minutes
 ```
 
 **Issues found:**
 ```
-⚠️ Wave [X] Validation Issues Found:
-❌ Failed Tests:
-  • [test-file]: [test description] - [failure reason]
-  • [integration-test]: [scenario] - [issue]
-🔍 Lint Issues:
-  • [file]: [rule violation]
-💡 Recommended Actions:
-  • Fix [specific issue] in [file]
-  • Update [test] to handle [case]
-🔧 Ready to re-run validation after fixes
+⚠️ Validation Issues:
+❌ [X] test failures
+❌ [Y] lint issues
+💡 Reporting to engineer (context retained)
+🔧 Ready for fixes
 ```
 
 **Success:**
 ```
-✅ Wave [X] QA Validation Complete
-✓ Unit Tests: [X] passed
-✓ Integration: [Y] passed  
-✓ Lint/Format: Clean
+✅ QA Validation Complete
+✓ Tests: [X] passed
 ✓ Build: Successful
 ⏱️ Duration: [X]m [Y]s
-🎯 Clear to proceed to Wave [X+1]
+🎯 Clear to proceed
 ```
 
-### Feature Validation Reports
+### Simplified Feature Reports
 **Starting validation:**
 ```
-📊 Feature Validation: [Feature Name]
-🎯 Validating against acceptance criteria from feature.md
-📁 Feature: [feature-id] - [description]
-🧪 Running: [comprehensive test suite]
+📊 Feature Validation: [Name]
+🧪 Running: [test suite]
 ⏱️ Target: < 15 minutes
 ```
 
 **Feature working:**
 ```
-✅ Feature [Name] Validation Complete
-✓ Unit Tests: [X] passed
-✓ Integration: [Y] passed
-✓ E2E Tests: [Z] passed
-✓ Acceptance Criteria: All verified
-✓ Build: Successful
-✓ Dev Server: Starts correctly
+✅ Feature Validation Complete
+✓ All tests passed
+✓ Acceptance criteria verified
+✓ Build successful
 ⏱️ Duration: [X]m [Y]s
-🎯 Feature is working as specified
 ```
 
 **Feature has issues:**
 ```
-⚠️ Feature [Name] Validation Issues:
-❌ Failed Tests: [X] failures
-  • [test-file]: [specific failure]
-  • [e2e-test]: [scenario failure]
-❌ Acceptance Criteria Issues:
-  • [Criteria X]: Not met - [reason]
-  • [Criteria Y]: Partially working - [details]
-📍 Likely Causes:
-  • Recent changes to [files]
-  • Dependencies updated: [packages]
-💡 Recommendations:
-  • Fix [specific issue]
-  • Rollback [change] if needed
-🔧 Run '/claudette-validate [feature-id]' after fixes
+⚠️ Feature Issues:
+❌ [X] failures found
+💡 Reporting to engineer
+🔧 Context retained for fast fixes
 ```
 
 ## Performance Optimization

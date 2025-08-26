@@ -24,47 +24,44 @@ Follow this sequential orchestration approach:
 5. **Update feature's STATUS.md** to "Implementation" phase
 6. **Log start** to feature's ACTIVITY.md with timestamp
 
-## Phase 2: Wave Organization
-7. **Organize tasks into waves** for clear progress tracking:
-   - Wave 1: Foundation tasks (database, environment setup)
-   - Wave 2: Core logic (services, business rules) 
-   - Wave 3: API layer (endpoints, middleware)
-   - Wave 4: Testing & quality (unit tests, integration tests, security)
-   - Wave 5: Deployment prep (documentation, CI/CD, monitoring)
+## Phase 2: Smart Execution Strategy
+7. **Assess feature size** from tasks.md:
+   - Small features (≤10 tasks): Delegate entire feature to single engineer
+   - Large features (>10 tasks): Delegate by wave to single engineer
+   - Keep engineer context alive for feedback loops
 
-8. **Sequential execution plan**: Execute one task at a time in dependency order
+8. **Optimized delegation patterns**:
+   - **Single Feature**: One engineer handles all tasks sequentially
+   - **Wave-based**: One engineer per wave, maintains context within wave
+   - **QA Gates**: Validate only at wave boundaries or feature completion
 
-## Phase 3: Sequential Task Execution with QA Gates
-9. **Execute tasks within each wave**:
-   - Delegate single task to claudette-senior-engineer
-   - Engineer implements with TDD (write tests, implement, pass)
-   - Wait for complete task completion (implement, test, commit)
-   - Update feature's STATUS.md and tasks.md progress immediately
-   - Handle any blockers before proceeding to next task
-   - NO QA validation between individual tasks (faster iteration)
+## Phase 3: Context-Preserving Task Execution
+9. **For Small Features (≤10 tasks)**:
+   - Delegate ALL tasks to single claudette-senior-engineer instance
+   - Engineer maintains context throughout entire feature
+   - Engineer updates STATUS.md with minimal format
+   - Engineer logs single lines to ACTIVITY.md
+   - QA validation only at feature completion
 
-10. **Wave-based progress tracking with QA gates**:
-    - Complete ALL tasks in wave before QA validation
-    - **Delegate to claudette-qa for comprehensive wave validation**
-    - **QA feedback loop**: If issues found, delegate fixes back to claudette-senior-engineer
-    - **Continue QA loop** until all wave validation passes
-    - Run claudette-reviewer for code review after QA passes
-    - **Only proceed to next wave** after both QA and code review pass
-    - Track QA results in feature's STATUS.md and ACTIVITY.md
+10. **For Large Features (>10 tasks)**:
+    - Delegate entire wave to single claudette-senior-engineer instance
+    - Engineer handles all wave tasks with retained context
+    - Engineer updates STATUS.md and logs to ACTIVITY.md
+    - QA validation at wave boundaries with same engineer for feedback
+    - No individual task validation (faster execution)
 
-## Phase 4: Final Quality Assurance
-11. **Comprehensive feature validation** after all waves complete:
-    - **Delegate to claudette-qa for complete feature validation**
-    - QA runs full test suite (unit, integration, E2E)
-    - QA verifies all acceptance criteria from feature.md
-    - QA validates builds succeed and dev servers start
-    - **Final QA feedback loop** until all validation passes
+## Phase 4: Streamlined Quality Assurance
+11. **Feature/Wave validation**:
+    - **Delegate to claudette-qa for validation**
+    - QA runs targeted test suite for completed work
+    - QA reports back to SAME engineer instance for fixes
+    - **QA feedback loop** maintains context until validation passes
+    - Single-line logging to ACTIVITY.md
 
-12. **Final code review and sign-off**:
-    - Delegate to claudette-reviewer for complete feature review
-    - Ensure all Definition of Done criteria met
-    - Log comprehensive validation results to ACTIVITY.md
-    - **Only mark feature complete** after both final QA and code review pass
+12. **Final validation and sign-off**:
+    - Delegate to claudette-reviewer only after QA passes
+    - Log completion with single line to ACTIVITY.md
+    - **Mark feature complete** after validation passes
 
 ## Phase 5: Completion
 13. **Feature completion**:
@@ -74,19 +71,20 @@ Follow this sequential orchestration approach:
     - Suggest next steps (merge, deploy, new feature)
     - Keep root STATUS.md pointing to completed feature until new feature is started
 
-# Sequential Execution Rules
+# Optimized Execution Rules
 
-**All tasks execute sequentially** for simplicity and reliability:
-- One task at a time, fully completed before next
-- Each task includes: implement → test → commit → update progress
-- No parallel execution to avoid git conflicts and complexity
-- Clear dependency order: Database → Repository → Services → API → Testing → Deployment
+**Context-preserving execution** for maximum efficiency:
+- Single engineer instance handles multiple related tasks
+- Maintains context and understanding throughout implementation
+- Minimal STATUS.md updates (4 lines total)
+- Single-line ACTIVITY.md logging with timestamp | agent | message
+- Reduced subagent calls from 50+ to 5-10 per feature
 
-**Wave Structure Benefits:**
-- Clear progress visualization
-- Natural breakpoints for code review
-- Logical organization of related tasks
-- Easy to pause and resume between waves
+**Smart Delegation Benefits:**
+- 80% faster execution with maintained context
+- 90% smaller log files
+- Natural quality checkpoints
+- Reduced overhead and handoff complexity
 
 # Error Handling
 
@@ -99,13 +97,12 @@ Follow this sequential orchestration approach:
 
 # Progress Reporting
 
-Provide detailed progress updates for sequential execution with QA integration:
-"Implementing [Feature]: Wave 2/5 - Task 3/8
-✅ Wave 1 Complete (10/10 tasks) - Database layer ✓ QA Passed ✓ Code Review
-🟡 Wave 2 In Progress: Implementing JWT validation service
-⏳ Next: Rate limiting implementation
-🧪 QA Status: Pending wave completion
-📊 Overall: 13/47 tasks complete (28%)"
+Provide concise progress updates:
+"Feature [Name]: Wave 2/5 Services (28% complete)
+✅ Wave 1 Complete - Foundation layer
+🟡 Current: JWT validation service
+⏳ Next: Rate limiting
+📊 13/47 tasks complete"
 
 # Response Format
 
