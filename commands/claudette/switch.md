@@ -17,17 +17,17 @@ Make sure to read the ~/.claude/claudette/commands-subagents-guide.md for file s
    - Ask human which feature to switch to
    - Validate the feature exists
 
-3. **Update STATUS.md**
-   - Change active feature path
-   - Update current task from the feature's tasks.md
-   - Update progress count
+3. **Update root STATUS.md**
+   - Change active feature path (3-line minimal format)
+   - Update timestamp
 
 4. **Log activity**
-   - Add to ACTIVITY.md: "- Switched to feature: [name]"
+   - Add to feature's ACTIVITY.md: "- Switched to this feature from [previous]"
+   - Add to root ACTIVITY.md if global logging needed
 
 5. **Show new status**
-   - Display updated active feature info
-   - Show current task and progress
+   - Read feature's STATUS.md for detailed progress
+   - Display current task and wave progress
 
 ## Usage Examples
 
@@ -46,6 +46,7 @@ Make sure to read the ~/.claude/claudette/commands-subagents-guide.md for file s
 ## Performance Benefits
 
 - No file moving required
-- Instant switching (just update STATUS.md)
-- Maintains all feature history
-- Context preserved for each feature
+- Instant switching (just update 3-line root STATUS.md)
+- Maintains all feature-specific history
+- Context preserved per feature in their own STATUS.md and ACTIVITY.md
+- Ultra-fast lookups with minimal root status file

@@ -101,9 +101,11 @@ Make sure to read the ~/.claude/claudette/commands-subagents-guide.md for file s
 1. **Create feature directory structure**
 2. **Generate comprehensive feature.md** with all approved details
 3. **Generate detailed tasks.md** with specific implementation tasks
-4. Write feature.md and tasks.md to feature directory
-5. **Update STATUS.md** to point to new feature
-6. **Log to ACTIVITY.md** with approval timestamp
+4. **Generate feature-specific STATUS.md** from template with progress tracking
+5. **Generate feature-specific ACTIVITY.md** from template with creation log
+6. **Write all files to feature directory** (feature.md, tasks.md, STATUS.md, ACTIVITY.md)
+7. **Update root STATUS.md** to point to new feature (3-line minimal format)
+8. **Log initial entry** to feature's ACTIVITY.md with approval timestamp
 
 ## Context7 MCP Integration Rules
 

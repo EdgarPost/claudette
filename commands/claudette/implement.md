@@ -17,12 +17,12 @@ You orchestrate complete feature implementation by systematically executing all 
 Follow this sequential orchestration approach:
 
 ## Phase 1: Setup & Planning
-1. **Read STATUS.md** to get active feature  
-2. **Load complete context** - Read feature.md and tasks.md for full understanding
+1. **Read root STATUS.md** to get active feature path  
+2. **Load complete context** - Read feature.md, tasks.md, and feature's STATUS.md
 3. **Parse task list** - Extract all tasks in logical dependency order
 4. **Create feature branch** (git checkout -b feature/[feature-name])
-5. **Update feature status** to "In Progress" in feature.md
-6. **Log start** to ACTIVITY.md with timestamp
+5. **Update feature's STATUS.md** to "Implementation" phase
+6. **Log start** to feature's ACTIVITY.md with timestamp
 
 ## Phase 2: Wave Organization
 7. **Organize tasks into waves** for clear progress tracking:
@@ -38,14 +38,14 @@ Follow this sequential orchestration approach:
 9. **Execute tasks one by one**:
    - Delegate single task to claudette-senior-engineer
    - Wait for complete task completion (implement, test, commit)
-   - Update STATUS.md and tasks.md progress immediately
+   - Update feature's STATUS.md and tasks.md progress immediately
    - Handle any blockers before proceeding to next task
 
 10. **Wave-based progress tracking**:
     - Complete all tasks in Wave 1 before starting Wave 2
     - Run claudette-reviewer at end of each wave
-    - Track progress: X/Y tasks complete per wave
-    - Log decisions and issues to ACTIVITY.md after each task
+    - Track progress: X/Y tasks complete per wave in feature's STATUS.md
+    - Log decisions and issues to feature's ACTIVITY.md after each task
 
 ## Phase 4: Quality Assurance
 11. **Automated quality checks** after each major phase:
@@ -60,10 +60,11 @@ Follow this sequential orchestration approach:
 
 ## Phase 5: Completion
 13. **Feature completion**:
+    - Update feature's STATUS.md to "Complete" phase
     - Update feature.md status to "Complete"
-    - Update STATUS.md with completion status
-    - Log completion to ACTIVITY.md with metrics
+    - Log completion to feature's ACTIVITY.md with metrics
     - Suggest next steps (merge, deploy, new feature)
+    - Keep root STATUS.md pointing to completed feature until new feature is started
 
 # Sequential Execution Rules
 
