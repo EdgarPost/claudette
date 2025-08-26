@@ -4,7 +4,22 @@
 **Estimated Duration**: [X days/weeks based on user approval]
 **Engineer Assigned**: TBD  
 **Context7 Validated**: [DATE] - [Technologies/versions confirmed]
+**Lead Architect Consulted**: [DATE] - [Technical proposals and refinements completed]
 **Status**: Not Started | In Progress | Review | Complete
+
+## About This Document
+
+This tasks document contains comprehensive implementation guidance created through collaboration between the lead architect and user during feature planning. Each task includes:
+
+- **Architect's Implementation Guide**: Step-by-step technical instructions
+- **Code Examples**: Concrete implementation patterns to follow
+- **Testing Requirements**: Specific test scenarios and coverage targets
+- **Acceptance Criteria**: Measurable success conditions
+- **Technical Notes**: Decisions and alternatives discussed during planning
+
+**For Engineers**: Follow the architect's implementation guide exactly. If guidance is unclear or missing, consult with the lead architect before proceeding.
+
+**For Reviewers**: Verify implementation matches the architect's specified patterns and meets all acceptance criteria.
 
 ---
 
@@ -56,10 +71,51 @@
 
 ### Database Schema & Models
 - [ ] **Design [Model1] schema** with fields: [specific fields]
-  - Implement constraints: [unique, foreign keys, checks]
-  - Add indexes for performance: [specific indexes]
-  - Include soft delete and audit fields
-  - **Estimated Time**: [X hours]
+  
+  **Architect's Implementation Guide**:
+  - Step 1: Create migration file using approved [ORM] v[X.Y.Z] migration patterns
+  - Step 2: Define schema with proper data types and constraints
+  - Step 3: Add performance indexes based on anticipated query patterns
+  - Step 4: Include audit fields (created_at, updated_at, deleted_at)
+  - Architecture pattern: [Repository Pattern with Active Record/Data Mapper]
+  
+  **Code Example**:
+  ```sql
+  -- Migration template provided by architect
+  CREATE TABLE [table_name] (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    [field1] VARCHAR(255) NOT NULL,
+    [field2] INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
+    deleted_at TIMESTAMP NULL,
+    -- Constraints from architect's design
+    CONSTRAINT unique_[field1] UNIQUE ([field1]),
+    CONSTRAINT check_[field2] CHECK ([field2] >= 0)
+  );
+  
+  -- Performance indexes recommended by architect
+  CREATE INDEX idx_[table]_[field] ON [table_name] ([field1]);
+  CREATE INDEX idx_[table]_active ON [table_name] (deleted_at) WHERE deleted_at IS NULL;
+  ```
+  
+  **Testing Requirements**:
+  - Unit test scenarios: Schema creation, constraint validation, index performance
+  - Integration test: Migration up/down, seed data loading
+  - Coverage target: 100% for schema definition
+  
+  **Acceptance Criteria**:
+  - [ ] Schema matches architect's approved design exactly
+  - [ ] All constraints prevent invalid data as specified
+  - [ ] Indexes improve query performance by [X]% on test dataset
+  - [ ] Migration runs cleanly in all environments
+  
+  **Technical Notes from Planning**:
+  - [Any special considerations discussed with user during refinement]
+  - [Performance requirements validated with architect]
+  - [Alternative approaches considered and why rejected]
+  
+  **Estimated Time**: [X hours]
 
 - [ ] **Design [Model2] schema** with relationships to [Model1]
   - Define foreign key relationships and cascading rules
@@ -120,11 +176,81 @@
 
 ### Core Service Implementation
 - [ ] **Implement [Service1]** with methods:
-  - `[method1](params)` - [specific business logic description]
-  - `[method2](params)` - [specific validation and processing]
-  - Include comprehensive error handling with custom exceptions
-  - Add detailed logging for debugging and monitoring
-  - **Estimated Time**: [X hours]
+  
+  **Architect's Implementation Guide**:
+  - Step 1: Create service class following [Dependency Injection pattern]
+  - Step 2: Implement constructor with repository dependencies
+  - Step 3: Add business logic methods with input validation
+  - Step 4: Implement comprehensive error handling with custom exceptions
+  - Step 5: Add structured logging for debugging and monitoring
+  - Architecture pattern: [Service Layer with Repository injection]
+  
+  **Code Example**:
+  ```javascript
+  // Service template provided by architect
+  class [Service1] {
+    constructor([repository1], [repository2], logger) {
+      this.[repository1] = [repository1];
+      this.[repository2] = [repository2];
+      this.logger = logger;
+    }
+    
+    async [method1](params) {
+      try {
+        // Architect's validation pattern
+        this.validateInput(params);
+        
+        // Business logic implementation
+        const result = await this.[repository1].create(params);
+        
+        // Logging pattern from architect
+        this.logger.info('[Service1].[method1] completed', { 
+          id: result.id, 
+          duration: performance.now() - startTime 
+        });
+        
+        return result;
+      } catch (error) {
+        // Error handling pattern from architect
+        this.logger.error('[Service1].[method1] failed', { 
+          params, 
+          error: error.message 
+        });
+        throw new [CustomException]('Failed to [business operation]', error);
+      }
+    }
+    
+    private validateInput(params) {
+      // Validation logic as specified by architect
+      if (!params.[required_field]) {
+        throw new ValidationError('[required_field] is required');
+      }
+    }
+  }
+  ```
+  
+  **Testing Requirements**:
+  - Unit test scenarios: All method paths, validation errors, business logic edge cases
+  - Mock dependencies: Repository calls, external services
+  - Coverage target: 85% minimum, 95% preferred
+  - Test patterns: AAA (Arrange, Act, Assert), Given-When-Then
+  
+  **Acceptance Criteria**:
+  - [ ] All business methods implement architect's error handling pattern
+  - [ ] Input validation prevents invalid business operations
+  - [ ] Logging provides sufficient debugging information
+  - [ ] Service integrates cleanly with repository layer
+  - [ ] Custom exceptions provide clear error messages for UI
+  
+  **Technical Notes from Planning**:
+  - [Specific business rules validated during user discussions]
+  - [Performance requirements: method should complete in <[X]ms]
+  - [Integration points with external services discussed]
+  
+  **Alternative Approaches Considered**:
+  - [Alternative pattern rejected during planning and why]
+  
+  **Estimated Time**: [X hours]
 
 - [ ] **Implement [Service2]** handling:
   - [Specific business responsibility 1]
@@ -179,11 +305,98 @@
 
 ### REST API Implementation
 - [ ] **Implement `POST /api/v1/[resource]`** endpoint
-  - Request validation using schema: [specific schema]
-  - Authentication/authorization checks
-  - Rate limiting: [X requests per minute per user]
-  - Response format as specified in feature.md
-  - **Estimated Time**: [X hours]
+  
+  **Architect's Implementation Guide**:
+  - Step 1: Create route handler using approved [Framework] v[X.Y.Z] patterns
+  - Step 2: Add request validation middleware with JSON schema
+  - Step 3: Implement authentication and authorization checks
+  - Step 4: Add rate limiting and request logging
+  - Step 5: Call service layer and handle business logic errors
+  - Step 6: Format response according to API specification
+  - Architecture pattern: [Controller → Service → Repository pattern]
+  
+  **Code Example**:
+  ```javascript
+  // API endpoint template provided by architect
+  app.post('/api/v1/[resource]', [
+    // Middleware stack from architect
+    authenticationMiddleware,
+    rateLimitMiddleware({ max: [X] }),
+    validationMiddleware([resourceSchema]),
+    authorizationMiddleware(['create:[resource]'])
+  ], async (req, res, next) => {
+    try {
+      const startTime = performance.now();
+      
+      // Service call as specified by architect
+      const result = await [service].create(req.body, {
+        userId: req.user.id,
+        correlationId: req.correlationId
+      });
+      
+      // Response format from architect's API specification
+      const response = {
+        id: result.id,
+        ...result.toPublicJSON(),
+        createdAt: result.createdAt,
+        _links: {
+          self: { href: `/api/v1/[resource]/${result.id}` }
+        }
+      };
+      
+      // Logging pattern from architect
+      req.logger.info('POST /api/v1/[resource] completed', {
+        resourceId: result.id,
+        duration: performance.now() - startTime
+      });
+      
+      res.status(201).json(response);
+    } catch (error) {
+      // Error handling pattern from architect
+      if (error instanceof ValidationError) {
+        return res.status(400).json({
+          error: 'Validation failed',
+          details: error.details
+        });
+      }
+      
+      if (error instanceof BusinessLogicError) {
+        return res.status(409).json({
+          error: error.message,
+          code: error.code
+        });
+      }
+      
+      // Unhandled errors
+      next(error);
+    }
+  });
+  ```
+  
+  **Testing Requirements**:
+  - Unit tests: Happy path, validation errors, auth failures, business logic errors
+  - Integration tests: Full request/response cycle with real database
+  - Security tests: Authentication bypass, authorization escalation, rate limiting
+  - Performance tests: Response time under load
+  - Coverage target: 90% for endpoint logic
+  
+  **Acceptance Criteria**:
+  - [ ] Endpoint validates input according to architect's schema
+  - [ ] Authentication and authorization work as specified
+  - [ ] Rate limiting prevents abuse as configured
+  - [ ] Response format matches API specification exactly
+  - [ ] Error responses provide clear, actionable messages
+  - [ ] Endpoint handles all error scenarios gracefully
+  
+  **Technical Notes from Planning**:
+  - [Rate limiting discussed: [X] requests per minute for this endpoint]
+  - [Response format refined during user review]
+  - [Specific validation rules confirmed with user]
+  
+  **Alternative Approaches Considered**:
+  - [GraphQL vs REST - REST chosen for simplicity during planning]
+  
+  **Estimated Time**: [X hours]
 
 - [ ] **Implement `GET /api/v1/[resource]/:id`** endpoint
   - Parameter validation (UUID format for ID)
