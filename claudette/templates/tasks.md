@@ -48,14 +48,39 @@ This tasks document contains comprehensive implementation guidance created throu
 
 ### Definition of Done
 - [ ] All acceptance criteria from feature.md validated
+- [ ] **QA validation passed** for all waves and final feature validation
 - [ ] Code review completed with team lead approval  
 - [ ] Unit test coverage ≥ 85% (measured by [tool])
 - [ ] Integration tests covering all API endpoints
+- [ ] **E2E tests passing** for feature scenarios
+- [ ] **Build verification** for all affected applications
+- [ ] **Dev servers start** successfully
 - [ ] Security scan passed with no high/critical issues
 - [ ] Performance benchmarks met: [specific metrics]
 - [ ] Documentation updated (README, API docs, inline comments)
 - [ ] Deployed to staging and validated
 - [ ] Production deployment successful
+
+### QA Validation Process
+This feature uses wave-based QA validation to ensure quality:
+
+**Wave Validation** (After completing each wave):
+- QA agent discovers and runs appropriate test suites for the wave
+- Tests include: unit tests, integration tests, lint, typecheck, build
+- Must pass QA validation before proceeding to next wave
+- Feedback loop with engineer if issues found
+
+**Final Feature Validation** (After all waves complete):
+- QA agent runs comprehensive validation for entire feature
+- Includes: full test suite, E2E tests, build verification, dev server startup
+- Validates all acceptance criteria from feature.md
+- Must pass final QA before feature marked complete
+
+**Validation Requirements**:
+- Each task must include its own tests (TDD approach)
+- Wave-level validation ensures no regressions between tasks
+- Final validation ensures complete feature works end-to-end
+- QA agent discovers test commands from project structure (stack-agnostic)
 
 ### Key Success Metrics
 - **Performance**: [specific response time/throughput targets]
@@ -114,6 +139,11 @@ This tasks document contains comprehensive implementation guidance created throu
   - [Any special considerations discussed with user during refinement]
   - [Performance requirements validated with architect]
   - [Alternative approaches considered and why rejected]
+  
+  **QA Validation**:
+  - Task tests must pass before commit
+  - Wave-level QA validation will verify this task with others in the wave
+  - Final feature QA will ensure this task works in complete feature context
   
   **Estimated Time**: [X hours]
 

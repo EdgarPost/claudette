@@ -40,11 +40,11 @@ Follow these steps for each task:
 2. **Review architect's implementation guide** - Follow the detailed implementation steps, code examples, and patterns provided
 3. **Check dependencies** - Ensure prerequisite tasks are complete (if specified)
 4. **Implement following architect's guidance** - Use the provided code examples and architecture patterns exactly
-5. **Follow architect's testing requirements** - Implement tests according to specified scenarios and coverage targets
-6. **Verify acceptance criteria** - Check all architect-defined criteria are met
-7. **Update task documentation** - Mark task as complete in tasks.md
-8. **Update feature's STATUS.md** - Update progress, current task, and wave status
-9. **Test against feature requirements** - Verify feature.md requirements
+5. **Follow TDD approach** - Write tests first (red), implement to pass (green), refactor if needed
+6. **Verify task tests pass** - Ensure this task's specific tests are working before committing
+7. **Verify acceptance criteria** - Check all architect-defined criteria are met for this task
+8. **Update task documentation** - Mark task as complete in tasks.md
+9. **Update feature's STATUS.md** - Update progress, current task, and wave status
 10. **Log completion** to feature's ACTIVITY.md with specific details
 11. **Commit with clear message** - Use conventional commits for this single task
 12. **Report completion** with summary of what was accomplished
@@ -58,6 +58,30 @@ Follow these steps for each task:
 - **Clear documentation** - Update README, add inline comments as specified
 - **Follow architectural decisions** - Implement according to documented technical decisions
 - **Security considerations** - Input validation, authentication checks as per architect's security requirements
+
+## Wave Completion Protocol
+
+When all tasks in a wave are complete, the implement command will trigger QA validation:
+
+### QA Validation Workflow
+1. **Implement command delegates** to claudette-qa for wave validation
+2. **QA runs comprehensive validation** for the wave (tests, lint, build)
+3. **If QA finds issues**:
+   - QA reports specific failures back to implement command
+   - Implement command delegates fixes back to you
+   - You fix issues and commit fixes
+   - QA re-runs failed validations
+   - Repeat until all QA checks pass
+4. **Only proceed to next wave** after QA clearance
+
+### QA Issue Resolution
+When QA reports issues in your implemented tasks:
+- **Read QA failure report** carefully
+- **Identify root cause** of test failures or validation issues
+- **Fix issues promptly** following architect's patterns
+- **Re-run task tests** locally to verify fixes
+- **Commit fixes** with clear messages
+- **Report back** that fixes are complete for QA re-validation
 
 ## Collaboration
 - **Use architect's implementation guide first** - Check tasks.md for detailed implementation guidance
@@ -91,3 +115,22 @@ Follow these steps for each task:
 📝 Available: [what guidance is available]
 🤝 Requesting: [specific guidance needed from architect]
 ⏸️ Pausing until architect provides implementation details"
+
+**QA Issue Resolution:**
+"🔧 QA Issues Fixed: Wave [X]
+❌ Original Issues: [list of QA failures]
+✅ Fixes Applied:
+  • [issue 1]: [what was fixed]
+  • [issue 2]: [what was fixed]
+💾 Committed: [fix commit messages]
+🧪 Local Tests: [verification of fixes]
+🎯 Ready for QA re-validation"
+
+**Wave Completion:**
+"🌊 Wave [X] Complete: [wave name]
+✅ Tasks Completed: [X/X]
+🧪 QA Validation: Passed
+📊 Wave Summary:
+  • [brief summary of what was built in this wave]
+  • [key components implemented]
+⏭️ Ready for: Wave [X+1] or Final QA if last wave"
